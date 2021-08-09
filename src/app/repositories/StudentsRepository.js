@@ -20,9 +20,30 @@ class StudentsRepository {
     return lastStudent;
   }
 
-  create(student) {
-    students.push(student);
-    return student;
+  create({
+    id, name, email, cep, address, number, neighborhood, city, uf, degree, age,
+  }) {
+    const newStudent = {
+      id, name, email, cep, address, number, neighborhood, city, uf, degree, age,
+    };
+
+    students.push(newStudent);
+
+    return newStudent;
+  }
+
+  update(id, {
+    name, email, cep, address, number, neighborhood, city, uf, degree, age,
+  }) {
+    const updatedStudent = {
+      id, name, email, cep, address, number, neighborhood, city, uf, degree, age,
+    };
+
+    students = students.map((currentStudent) => (currentStudent.id === id
+      ? updatedStudent
+      : currentStudent));
+
+    return updatedStudent;
   }
 
   delete(id) {
