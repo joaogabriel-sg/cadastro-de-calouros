@@ -10,6 +10,21 @@ class StudentsRepository {
     return studentById;
   }
 
+  findByEmail(email) {
+    const studentByEmail = students.find((student) => student.email === email);
+    return studentByEmail;
+  }
+
+  findLast() {
+    const lastStudent = students[students.length - 1];
+    return lastStudent;
+  }
+
+  create(student) {
+    students.push(student);
+    return student;
+  }
+
   delete(id) {
     const newStudents = students.filter((student) => student.id !== id);
     students = newStudents;
