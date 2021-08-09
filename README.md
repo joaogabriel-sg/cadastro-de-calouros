@@ -31,3 +31,11 @@ npm run dev
 # or
 yarn dev
 ```
+
+## 🧪 Testing
+
+```bash
+npm test
+# or
+yarn test
+```

@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "test": "jest"
   },
   "dependencies": {
     "express": "^4.17.1"
@@ -13,6 +14,8 @@
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.24.0",
-    "nodemon": "^2.0.12"
+    "jest": "^27.0.6",
+    "nodemon": "^2.0.12",
+    "supertest": "^6.1.4"
   }
 }
