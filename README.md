@@ -1,5 +1,5 @@
 <div align="center">
-  <h1 style="font-size: 36px; font-weight: bold;">Star Wars</h1>
+  <h1 style="font-size: 36px; font-weight: bold;">Cadastro de Calouros</h1>
 </div>
 
 ## 🎮 Getting started
