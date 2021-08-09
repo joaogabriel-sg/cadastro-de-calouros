@@ -5,18 +5,18 @@ const students = require('../src/mocks/students');
 describe('GET Routes', () => {
   test('should get all students', async () => {
     const response = await request(app).get('/students');
-  
+
     expect(response.status).toEqual(200);
     expect(response.text).toBe(JSON.stringify(students));
-  })
-  
+  });
+
   test('should get an existent student by id', async () => {
     const id = '1';
-  
+
     const response = await request(app).get(`/students/${id}`);
-  
+
     expect(response.status).toEqual(200);
-  })
+  });
 
   test('should not get existent student by id', async () => {
     const id = '123456789123456789';
@@ -24,11 +24,11 @@ describe('GET Routes', () => {
     const response = await request(app).get(`/students/${id}`);
 
     expect(response.status).toEqual(404);
-  })
+  });
 });
 
 describe('POST Routes', () => {
-  test('should create a student', async () => {
+  test('should create a new student', async () => {
     const student = {
       name: 'Vinícius Lemos',
       email: 'viniciuslemos@email.com',
@@ -39,8 +39,8 @@ describe('POST Routes', () => {
       city: 'Boa Viagem',
       uf: 'CE',
       degree: 'Engenharia de Software',
-      age: 18
-    }
+      age: 18,
+    };
 
     const response = await request(app).post('/students').send(student);
 
@@ -50,9 +50,9 @@ describe('POST Routes', () => {
 
     expect(response.status).toEqual(200);
     expect(createdStudent).toStrictEqual(student);
-  })
+  });
 
-  test('should not create a student with a blank name', async () => {
+  test('should not create a new student with a blank name', async () => {
     const student = {
       name: '',
       email: 'viniciuslemos@email.com',
@@ -63,18 +63,18 @@ describe('POST Routes', () => {
       city: 'Boa Viagem',
       uf: 'CE',
       degree: 'Engenharia de Software',
-      age: 18
-    }
+      age: 18,
+    };
 
     const response = await request(app).post('/students').send(student);
 
     expect(response.status).toEqual(400);
     expect(response.text).toContain(JSON.stringify({
-      error: 'Name is required.'
-    }))
-  })
+      error: 'Name is required.',
+    }));
+  });
 
-  test('should not create a student with a blank e-mail', async () => {
+  test('should not create a new student with a blank e-mail', async () => {
     const student = {
       name: 'Vinícius Lemos',
       email: '',
@@ -85,18 +85,18 @@ describe('POST Routes', () => {
       city: 'Boa Viagem',
       uf: 'CE',
       degree: 'Engenharia de Software',
-      age: 18
-    }
+      age: 18,
+    };
 
     const response = await request(app).post('/students').send(student);
 
     expect(response.status).toEqual(400);
     expect(response.text).toContain(JSON.stringify({
-      error: 'E-mail is required.'
-    }))
-  })
+      error: 'E-mail is required.',
+    }));
+  });
 
-  test('should not create a student with a blank CEP', async () => {
+  test('should not create a new student with a blank CEP', async () => {
     const student = {
       name: 'Vinícius Lemos',
       email: 'viniciuslemos@email.com',
@@ -107,18 +107,18 @@ describe('POST Routes', () => {
       city: 'Boa Viagem',
       uf: 'CE',
       degree: 'Engenharia de Software',
-      age: 18
-    }
+      age: 18,
+    };
 
     const response = await request(app).post('/students').send(student);
 
     expect(response.status).toEqual(400);
     expect(response.text).toContain(JSON.stringify({
-      error: 'CEP is required.'
-    }))
-  })
+      error: 'CEP is required.',
+    }));
+  });
 
-  test('should not create a student with a blank degree', async () => {
+  test('should not create a new student with a blank degree', async () => {
     const student = {
       name: 'Vinícius Lemos',
       email: 'viniciuslemos@email.com',
@@ -129,18 +129,18 @@ describe('POST Routes', () => {
       city: 'Boa Viagem',
       uf: 'CE',
       degree: '',
-      age: 18
-    }
+      age: 18,
+    };
 
     const response = await request(app).post('/students').send(student);
 
     expect(response.status).toEqual(400);
     expect(response.text).toContain(JSON.stringify({
-      error: 'Degree is required.'
-    }))
-  })
+      error: 'Degree is required.',
+    }));
+  });
 
-  test('should not create a student with an existent e-email', async () => {
+  test('should not create a new student with an existent e-email', async () => {
     const student = {
       name: 'Vinícius Lemos',
       email: 'viniciuslemos@email.com',
@@ -151,17 +151,203 @@ describe('POST Routes', () => {
       city: 'Boa Viagem',
       uf: 'CE',
       degree: 'Engenharia de Software',
-      age: 18
-    }
+      age: 18,
+    };
 
     const response = await request(app).post('/students').send(student);
 
     expect(response.status).toEqual(400);
-    expect(response.text).toContain(JSON.stringify({ 
-      error: 'This e-mail is already in use.' 
+    expect(response.text).toContain(JSON.stringify({
+      error: 'This e-mail is already in use.',
     }));
-  })
-})
+  });
+});
+
+describe('PUT Routes', () => {
+  test('should update an existent student', async () => {
+    const id = '1';
+    const student = {
+      name: 'João Gabriel Silva Gomes',
+      email: 'joaogabriel@email.com',
+      cep: 63870000,
+      address: 'Avenida Conde Mota do Vale',
+      number: 990,
+      neighborhood: 'Uirapuru',
+      city: 'Fortaleza',
+      uf: 'CE',
+      degree: 'Sistemas e Mídias Digitais',
+      age: 20,
+    };
+
+    const response = await request(app).put(`/students/${id}`).send(student);
+
+    const updatedStudent = JSON.parse(response.text);
+
+    expect(response.status).toEqual(200);
+    expect(updatedStudent).toStrictEqual({ id, ...student });
+  });
+
+  test('should not update a non-existent student', async () => {
+    const id = '9892989';
+    const student = {
+      name: 'João Gabriel',
+      email: 'joaogabriel@email.com',
+      cep: 63870000,
+      address: 'Avenida Conde Mota do Vale',
+      number: 990,
+      neighborhood: 'Uirapuru',
+      city: 'Fortaleza',
+      uf: 'CE',
+      degree: 'Sistemas e Mídias Digitais',
+      age: 20,
+    };
+
+    const response = await request(app).put(`/students/${id}`).send(student);
+
+    expect(response.status).toEqual(404);
+    expect(response.text).toContain(JSON.stringify({
+      error: 'Student not found.',
+    }));
+  });
+
+  test('should not update an existent student with a blank name', async () => {
+    const id = '1';
+    const student = {
+      name: '',
+      email: 'joaogabriel@email.com',
+      cep: 63870000,
+      address: 'Avenida Conde Mota do Vale',
+      number: 990,
+      neighborhood: 'Uirapuru',
+      city: 'Fortaleza',
+      uf: 'CE',
+      degree: 'Sistemas e Mídias Digitais',
+      age: 20,
+    };
+
+    const response = await request(app).put(`/students/${id}`).send(student);
+
+    expect(response.status).toEqual(400);
+    expect(response.text).toContain(JSON.stringify({
+      error: 'Name is required.',
+    }));
+  });
+
+  test('should not update an existent student with a blank email', async () => {
+    const id = '1';
+    const student = {
+      name: 'João Gabriel Silva Gomes',
+      email: '',
+      cep: 63870000,
+      address: 'Avenida Conde Mota do Vale',
+      number: 990,
+      neighborhood: 'Uirapuru',
+      city: 'Fortaleza',
+      uf: 'CE',
+      degree: 'Sistemas e Mídias Digitais',
+      age: 20,
+    };
+
+    const response = await request(app).put(`/students/${id}`).send(student);
+
+    expect(response.status).toEqual(400);
+    expect(response.text).toContain(JSON.stringify({
+      error: 'E-mail is required.',
+    }));
+  });
+
+  test('should not update an existent student with a blank email', async () => {
+    const id = '1';
+    const student = {
+      name: 'João Gabriel Silva Gomes',
+      email: 'joaogabriel@email.com',
+      cep: '',
+      address: 'Avenida Conde Mota do Vale',
+      number: 990,
+      neighborhood: 'Uirapuru',
+      city: 'Fortaleza',
+      uf: 'CE',
+      degree: 'Sistemas e Mídias Digitais',
+      age: 20,
+    };
+
+    const response = await request(app).put(`/students/${id}`).send(student);
+
+    expect(response.status).toEqual(400);
+    expect(response.text).toContain(JSON.stringify({
+      error: 'CEP is required.',
+    }));
+  });
+
+  test('should not update an existent student with a blank email', async () => {
+    const id = '1';
+    const student = {
+      name: 'João Gabriel Silva Gomes',
+      email: 'joaogabriel@email.com',
+      cep: 63870000,
+      address: 'Avenida Conde Mota do Vale',
+      number: 990,
+      neighborhood: 'Uirapuru',
+      city: 'Fortaleza',
+      uf: 'CE',
+      degree: '',
+      age: 20,
+    };
+
+    const response = await request(app).put(`/students/${id}`).send(student);
+
+    expect(response.status).toEqual(400);
+    expect(response.text).toContain(JSON.stringify({
+      error: 'Degree is required.',
+    }));
+  });
+
+  test('should not update an existent student with a non-existent email', async () => {
+    const id = '1';
+    const student = {
+      name: 'João Gabriel Silva Gomes',
+      email: 'jgsg@email.com',
+      cep: 63870000,
+      address: 'Avenida Conde Mota do Vale',
+      number: 990,
+      neighborhood: 'Uirapuru',
+      city: 'Fortaleza',
+      uf: 'CE',
+      degree: 'Sistemas e Mídias Digitais',
+      age: 20,
+    };
+
+    const response = await request(app).put(`/students/${id}`).send(student);
+
+    expect(response.status).toEqual(400);
+    expect(response.text).toContain(JSON.stringify({
+      error: 'This e-mail does not exist.',
+    }));
+  });
+
+  test('should not update an existent student with a non-existent email', async () => {
+    const id = '3';
+    const student = {
+      name: 'João Gabriel Silva Gomes',
+      email: 'joaogabriel@email.com',
+      cep: 63870000,
+      address: 'Avenida Conde Mota do Vale',
+      number: 990,
+      neighborhood: 'Uirapuru',
+      city: 'Fortaleza',
+      uf: 'CE',
+      degree: 'Sistemas e Mídias Digitais',
+      age: 20,
+    };
+
+    const response = await request(app).put(`/students/${id}`).send(student);
+
+    expect(response.status).toEqual(400);
+    expect(response.text).toContain(JSON.stringify({
+      error: 'This e-mail is already in use.',
+    }));
+  });
+});
 
 describe('DELETE Routes', () => {
   test('should delete a student by id', async () => {
@@ -171,5 +357,4 @@ describe('DELETE Routes', () => {
 
     expect(response.status).toEqual(204);
   });
-})
-
+});

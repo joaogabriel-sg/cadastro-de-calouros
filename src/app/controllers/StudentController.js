@@ -85,7 +85,11 @@ class StudentController {
 
     const studentByEmail = StudentsRepository.findByEmail(email);
 
-    if (studentByEmail && studentByEmail.id !== id) {
+    if (!studentByEmail) {
+      return res.status(400).json({ error: 'This e-mail does not exist.' });
+    }
+
+    if (studentByEmail.id !== id) {
       return res.status(400).json({ error: 'This e-mail is already in use.' });
     }
 
