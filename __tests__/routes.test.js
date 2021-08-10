@@ -18,7 +18,7 @@ describe('GET Routes', () => {
     expect(response.status).toEqual(200);
   });
 
-  test('should not get existent student by id', async () => {
+  test('should not get an non-existent student by id', async () => {
     const id = '123456789123456789';
 
     const response = await request(app).get(`/students/${id}`);
@@ -140,6 +140,28 @@ describe('POST Routes', () => {
     }));
   });
 
+  test('should not create a new student with an invalid e-email', async () => {
+    const student = {
+      name: 'Vinícius Lemos',
+      email: 'vin1%@0_!*_-d@0em_--1m.com',
+      cep: 63870000,
+      address: 'Rua Douglas Loma',
+      number: 690,
+      neighborhood: 'Vila dos Povos Azúis',
+      city: 'Boa Viagem',
+      uf: 'CE',
+      degree: 'Engenharia de Software',
+      age: 18,
+    };
+
+    const response = await request(app).post('/students').send(student);
+
+    expect(response.status).toEqual(400);
+    expect(response.text).toContain(JSON.stringify({
+      error: 'This e-mail is invalid.',
+    }));
+  });
+
   test('should not create a new student with an existent e-email', async () => {
     const student = {
       name: 'Vinícius Lemos',
@@ -233,7 +255,7 @@ describe('PUT Routes', () => {
     }));
   });
 
-  test('should not update an existent student with a blank email', async () => {
+  test('should not update an existent student with a blank e-mail', async () => {
     const id = '1';
     const student = {
       name: 'João Gabriel Silva Gomes',
@@ -256,7 +278,7 @@ describe('PUT Routes', () => {
     }));
   });
 
-  test('should not update an existent student with a blank email', async () => {
+  test('should not update an existent student with a blank CEP', async () => {
     const id = '1';
     const student = {
       name: 'João Gabriel Silva Gomes',
@@ -279,7 +301,7 @@ describe('PUT Routes', () => {
     }));
   });
 
-  test('should not update an existent student with a blank email', async () => {
+  test('should not update an existent student with a blank degree', async () => {
     const id = '1';
     const student = {
       name: 'João Gabriel Silva Gomes',
@@ -302,7 +324,30 @@ describe('PUT Routes', () => {
     }));
   });
 
-  test('should not update an existent student with a non-existent email', async () => {
+  test('should not update an existent student with an invalid e-mail', async () => {
+    const id = '1';
+    const student = {
+      name: 'João Gabriel Silva Gomes',
+      email: 'joaa149-++$!=4149jao@em9-1))c.com',
+      cep: 63870000,
+      address: 'Avenida Conde Mota do Vale',
+      number: 990,
+      neighborhood: 'Uirapuru',
+      city: 'Fortaleza',
+      uf: 'CE',
+      degree: 'Sistemas e Mídias Digitais',
+      age: 20,
+    };
+
+    const response = await request(app).put(`/students/${id}`).send(student);
+
+    expect(response.status).toEqual(400);
+    expect(response.text).toContain(JSON.stringify({
+      error: 'This e-mail is invalid.',
+    }));
+  });
+
+  test('should not update an existent student with a non-existent e-mail', async () => {
     const id = '1';
     const student = {
       name: 'João Gabriel Silva Gomes',
@@ -325,7 +370,7 @@ describe('PUT Routes', () => {
     }));
   });
 
-  test('should not update an existent student with a non-existent email', async () => {
+  test('should not update an existent student with different e-mail', async () => {
     const id = '3';
     const student = {
       name: 'João Gabriel Silva Gomes',
@@ -350,8 +395,16 @@ describe('PUT Routes', () => {
 });
 
 describe('DELETE Routes', () => {
-  test('should delete a student by id', async () => {
+  test('should delete an existent student by id', async () => {
     const id = '3';
+
+    const response = await request(app).delete(`/students/${id}`);
+
+    expect(response.status).toEqual(204);
+  });
+
+  test('should delete a non-existent student by id', async () => {
+    const id = '1937891749';
 
     const response = await request(app).delete(`/students/${id}`);
 

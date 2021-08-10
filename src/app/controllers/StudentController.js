@@ -1,4 +1,5 @@
 const StudentsRepository = require('../repositories/StudentsRepository');
+const isEmailValid = require('../../utils/isEmailValid');
 
 class StudentController {
   index(req, res) {
@@ -35,6 +36,10 @@ class StudentController {
 
     if (!degree) {
       return res.status(400).json({ error: 'Degree is required.' });
+    }
+
+    if (!isEmailValid(email)) {
+      return res.status(400).json({ error: 'This e-mail is invalid.' });
     }
 
     const contactExists = StudentsRepository.findByEmail(email);
@@ -81,6 +86,10 @@ class StudentController {
 
     if (!degree) {
       return res.status(400).json({ error: 'Degree is required.' });
+    }
+
+    if (!isEmailValid(email)) {
+      return res.status(400).json({ error: 'This e-mail is invalid.' });
     }
 
     const studentByEmail = StudentsRepository.findByEmail(email);
