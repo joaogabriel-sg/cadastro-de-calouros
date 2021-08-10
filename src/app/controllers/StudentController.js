@@ -1,5 +1,6 @@
 const StudentsRepository = require('../repositories/StudentsRepository');
 const isEmailValid = require('../../utils/isEmailValid');
+const isDegreeExistent = require('../../helpers/isDegreeExistent');
 
 class StudentController {
   index(req, res) {
@@ -46,6 +47,10 @@ class StudentController {
 
     if (contactExists) {
       return res.status(400).json({ error: 'This e-mail is already in use.' });
+    }
+
+    if (!isDegreeExistent(degree)) {
+      return res.status(400).json({ error: 'This degree is invalid or non-exist.' });
     }
 
     const lastId = StudentsRepository.findLast()?.id || '0';
@@ -100,6 +105,10 @@ class StudentController {
 
     if (studentByEmail.id !== id) {
       return res.status(400).json({ error: 'This e-mail is already in use.' });
+    }
+
+    if (!isDegreeExistent(degree)) {
+      return res.status(400).json({ error: 'This degree is invalid or non-exist.' });
     }
 
     const student = StudentsRepository.update(id, {
