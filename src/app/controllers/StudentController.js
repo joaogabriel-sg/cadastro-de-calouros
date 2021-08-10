@@ -1,5 +1,6 @@
 const StudentsRepository = require('../repositories/StudentsRepository');
 const isEmailValid = require('../../utils/isEmailValid');
+const isCepValid = require('../../utils/isCepValid');
 const isDegreeExistent = require('../../helpers/isDegreeExistent');
 
 class StudentController {
@@ -47,6 +48,10 @@ class StudentController {
 
     if (contactExists) {
       return res.status(400).json({ error: 'This e-mail is already in use.' });
+    }
+
+    if (!isCepValid(cep)) {
+      return res.status(400).json({ error: 'This CEP is invalid.' });
     }
 
     if (!isDegreeExistent(degree)) {
@@ -105,6 +110,10 @@ class StudentController {
 
     if (studentByEmail.id !== id) {
       return res.status(400).json({ error: 'This e-mail is already in use.' });
+    }
+
+    if (!isCepValid(cep)) {
+      return res.status(400).json({ error: 'This CEP is invalid.' });
     }
 
     if (!isDegreeExistent(degree)) {

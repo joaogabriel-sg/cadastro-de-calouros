@@ -184,6 +184,32 @@ describe('POST Routes', () => {
     }));
   });
 
+  test('should not create a new student with a invalid CEP', async () => {
+    const student = {
+      name: 'Vinícius Lemos',
+      email: 'vinicius@email.com',
+      cep: 63870000000000000,
+      address: 'Rua Douglas Loma',
+      number: 690,
+      neighborhood: 'Vila dos Povos Azúis',
+      city: 'Boa Viagem',
+      uf: 'CE',
+      degree: 'Engenharia de Software',
+      age: 18,
+    };
+
+    const response = await request(app).post('/students').send(student);
+
+    const createdStudent = JSON.parse(response.text);
+
+    student.id = createdStudent.id;
+
+    expect(response.status).toEqual(400);
+    expect(response.text).toContain(JSON.stringify({
+      error: 'This CEP is invalid.',
+    }));
+  });
+
   test('should not create a new student with a invalid or non-existent degree', async () => {
     const student = {
       name: 'Vinícius Lemos',
@@ -416,6 +442,29 @@ describe('PUT Routes', () => {
     expect(response.status).toEqual(400);
     expect(response.text).toContain(JSON.stringify({
       error: 'This e-mail is already in use.',
+    }));
+  });
+
+  test('should not update an existent student with a invalid CEP', async () => {
+    const id = '1';
+    const student = {
+      name: 'João Gabriel Silva Gomes',
+      email: 'joaogabriel@email.com',
+      cep: 1234567890000000,
+      address: 'Avenida Conde Mota do Vale',
+      number: 990,
+      neighborhood: 'Uirapuru',
+      city: 'Fortaleza',
+      uf: 'CE',
+      degree: 'Sistemas e Mídias Digitais',
+      age: 20,
+    };
+
+    const response = await request(app).put(`/students/${id}`).send(student);
+
+    expect(response.status).toEqual(400);
+    expect(response.text).toContain(JSON.stringify({
+      error: 'This CEP is invalid.',
     }));
   });
 
