@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1628598498850" clover="3.2.0">
-  <project timestamp="1628598498852" name="All files">
-    <metrics statements="306" coveredstatements="304" conditionals="59" coveredconditionals="57" methods="15" coveredmethods="15" elements="380" coveredelements="376" complexity="0" loc="306" ncloc="306" packages="6" files="9" classes="9"/>
+<coverage generated="1629748906865" clover="3.2.0">
+  <project timestamp="1629748906865" name="All files">
+    <metrics statements="310" coveredstatements="308" conditionals="61" coveredconditionals="59" methods="15" coveredmethods="15" elements="386" coveredelements="382" complexity="0" loc="310" ncloc="310" packages="6" files="9" classes="9"/>
     <package name="src">
       <metrics statements="27" coveredstatements="25" conditionals="1" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="index.js" path="/media/joaogabriel/DEV_JGSG/projects/nodejs/cadastro-de-calouros/src/index.js">
+      <file name="index.js" path="/home/jgsg/Documents/ufc/cadastro-de-calouros/src/index.js">
         <metrics statements="14" coveredstatements="12" conditionals="1" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -21,7 +21,7 @@
         <line num="13" count="1" type="stmt"/>
         <line num="14" count="1" type="stmt"/>
       </file>
-      <file name="routes.js" path="/media/joaogabriel/DEV_JGSG/projects/nodejs/cadastro-de-calouros/src/routes.js">
+      <file name="routes.js" path="/home/jgsg/Documents/ufc/cadastro-de-calouros/src/routes.js">
         <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -40,7 +40,7 @@
     </package>
     <package name="src.app.controllers">
       <metrics statements="138" coveredstatements="138" conditionals="41" coveredconditionals="40" methods="5" coveredmethods="5"/>
-      <file name="StudentController.js" path="/media/joaogabriel/DEV_JGSG/projects/nodejs/cadastro-de-calouros/src/app/controllers/StudentController.js">
+      <file name="StudentController.js" path="/home/jgsg/Documents/ufc/cadastro-de-calouros/src/app/controllers/StudentController.js">
         <metrics statements="138" coveredstatements="138" conditionals="41" coveredconditionals="40" methods="5" coveredmethods="5"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -184,7 +184,7 @@
     </package>
     <package name="src.app.repositories">
       <metrics statements="56" coveredstatements="56" conditionals="13" coveredconditionals="13" methods="7" coveredmethods="7"/>
-      <file name="StudentsRepository.js" path="/media/joaogabriel/DEV_JGSG/projects/nodejs/cadastro-de-calouros/src/app/repositories/StudentsRepository.js">
+      <file name="StudentsRepository.js" path="/home/jgsg/Documents/ufc/cadastro-de-calouros/src/app/repositories/StudentsRepository.js">
         <metrics statements="56" coveredstatements="56" conditionals="13" coveredconditionals="13" methods="7" coveredmethods="7"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -246,7 +246,7 @@
     </package>
     <package name="src.helpers">
       <metrics statements="7" coveredstatements="7" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
-      <file name="isDegreeExistent.js" path="/media/joaogabriel/DEV_JGSG/projects/nodejs/cadastro-de-calouros/src/helpers/isDegreeExistent.js">
+      <file name="isDegreeExistent.js" path="/home/jgsg/Documents/ufc/cadastro-de-calouros/src/helpers/isDegreeExistent.js">
         <metrics statements="7" coveredstatements="7" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -259,7 +259,7 @@
     </package>
     <package name="src.mocks">
       <metrics statements="67" coveredstatements="67" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="degrees.js" path="/media/joaogabriel/DEV_JGSG/projects/nodejs/cadastro-de-calouros/src/mocks/degrees.js">
+      <file name="degrees.js" path="/home/jgsg/Documents/ufc/cadastro-de-calouros/src/mocks/degrees.js">
         <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -273,7 +273,7 @@
         <line num="10" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
       </file>
-      <file name="students.js" path="/media/joaogabriel/DEV_JGSG/projects/nodejs/cadastro-de-calouros/src/mocks/students.js">
+      <file name="students.js" path="/home/jgsg/Documents/ufc/cadastro-de-calouros/src/mocks/students.js">
         <metrics statements="56" coveredstatements="56" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -334,16 +334,20 @@
       </file>
     </package>
     <package name="src.utils">
-      <metrics statements="11" coveredstatements="11" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
-      <file name="isCepValid.js" path="/media/joaogabriel/DEV_JGSG/projects/nodejs/cadastro-de-calouros/src/utils/isCepValid.js">
-        <metrics statements="5" coveredstatements="5" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
-        <line num="1" count="8" type="cond" truecount="1" falsecount="0"/>
-        <line num="2" count="8" type="stmt"/>
-        <line num="3" count="8" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
+      <metrics statements="15" coveredstatements="15" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
+      <file name="isCepValid.js" path="/home/jgsg/Documents/ufc/cadastro-de-calouros/src/utils/isCepValid.js">
+        <metrics statements="9" coveredstatements="9" conditionals="3" coveredconditionals="3" methods="1" coveredmethods="1"/>
+        <line num="1" count="10" type="cond" truecount="1" falsecount="0"/>
+        <line num="2" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="5" count="8" type="stmt"/>
+        <line num="6" count="8" type="stmt"/>
+        <line num="7" count="8" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
       </file>
-      <file name="isEmailValid.js" path="/media/joaogabriel/DEV_JGSG/projects/nodejs/cadastro-de-calouros/src/utils/isEmailValid.js">
+      <file name="isEmailValid.js" path="/home/jgsg/Documents/ufc/cadastro-de-calouros/src/utils/isEmailValid.js">
         <metrics statements="6" coveredstatements="6" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="1" count="13" type="cond" truecount="1" falsecount="0"/>
         <line num="2" count="13" type="stmt"/>

@@ -12,4 +12,16 @@ describe('Is CEP Valid', () => {
 
     expect(isCepValid(cep)).toBe(false);
   });
+
+  test('should be an invalid CEP when string', () => {
+    const cep = '63870000';
+
+    expect(isCepValid(cep)).toBe(false);
+  });
+
+  test('should be an invalid CEP when it has at least one letter or special character', () => {
+    const cep = '638700!!a';
+
+    expect(isCepValid(cep)).toBe(false);
+  });
 });
